@@ -50,7 +50,7 @@
         <!-- Read only connection -->
         <connection>scm:git:git://github.com/davidcampos/gimli</connection>
         <!-- Read/Write connection -->
-        <developerConnection>scm:git:git://github.com/davidcampos/gimli</developerConnection>
+        <developerConnection>scm:git:https://git@github.com:davidcampos/gimli.git</developerConnection>
     </scm>
 
     <!--
