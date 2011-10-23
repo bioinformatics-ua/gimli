@@ -1,0 +1,12 @@
+#! /bin/bash
+BASEDIR=$(dirname $0)
+cd $BASEDIR
+OS=$(uname)
+
+if [ "$OS" == "Darwin" ]
+then
+	./gdep
+elif [ "$OS" == "Linux" ]
+then
+	./gdep-linux64
+fi

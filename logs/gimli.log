@@ -1,0 +1,195 @@
+ERROR [main] pt.ua.tm.gimli.reader.BCReader - Please specify the corpus file.
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Loading GDep parsing from file...
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Loading annotations...
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Loading tokens and IDs...
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Performing dictionary matching...
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: prge
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: verbs
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: aminoacid
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleicacid
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleobase
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleoside
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleotide
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Writing corpus in CoNNL format to file: /Users/david/Desktop/test.gz
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Done!
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Total time: 0:00:47.381
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Per sentence: 0.0095 seconds
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - Per abstract: 0.0948 seconds
+INFO  [main] pt.ua.tm.gimli.reader.BCReader - 10 abstracts: 0.9476 seconds
+ERROR [main] pt.ua.tm.gimli.reader.JNLPBAReader - Please specify the corpus file.
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Loading GDep parsing from file...
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Loading tokens, annotations and IDs...
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Performing dictionary matching...
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: prge
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: verbs
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: aminoacid
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleicacid
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleobase
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleoside
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: stopwords
+INFO  [main] pt.ua.tm.gimli.config.Resources - Loading lexicon: nucleotide
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Writing corpus in CoNNL format to file: /Users/david/Desktop/testj.gz
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Done!
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Total time: 0:00:33.816
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Per sentence: 0.0088 seconds
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - Per abstract: 0.0877 seconds
+INFO  [main] pt.ua.tm.gimli.reader.JNLPBAReader - 10 abstracts: 0.8770 seconds
+ERROR [main] pt.ua.tm.gimli.util.Model - Please specify the task to be performed.
+INFO  [main] pt.ua.tm.gimli.util.Model - Parsing: FW
+INFO  [main] pt.ua.tm.gimli.util.Model - Entity: protein
+INFO  [main] pt.ua.tm.gimli.util.Model - Corpus: resources/corpus/gold/jnlpba/train/corpus_protein.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Model: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Token: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Stem: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Lemma: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - POS: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Chunk: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NLP: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Capitalization: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Counting: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Symbols: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NGrams: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Suffix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Prefix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Greek: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Roman: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Word Shape: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - PRGE: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Biomedical Concepts: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Verbs: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Window: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Conjunctions: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Order: 2
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/train/corpus_protein.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Parsing: FW
+INFO  [main] pt.ua.tm.gimli.util.Model - Entity: RNA
+INFO  [main] pt.ua.tm.gimli.util.Model - Corpus: resources/corpus/gold/jnlpba/train/corpus_rna.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Model: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Token: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Stem: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Lemma: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - POS: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Chunk: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NLP: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Capitalization: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Counting: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Symbols: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NGrams: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Suffix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Prefix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Greek: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Roman: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Word Shape: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - PRGE: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Biomedical Concepts: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Verbs: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Window: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Conjunctions: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Order: 1
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/train/corpus_rna.gz
+INFO  [main] pt.ua.tm.gimli.model.CRFModel - Extracting features and converting data into training format...
+INFO  [main] pt.ua.tm.gimli.model.CRFBase - Writing model to file: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Done!
+INFO  [main] pt.ua.tm.gimli.util.Model - Total time: 0:02:39.809
+INFO  [main] pt.ua.tm.gimli.util.Model - Per sentence: 0.0086 seconds
+INFO  [main] pt.ua.tm.gimli.util.Model - Per abstract: 0.0862 seconds
+INFO  [main] pt.ua.tm.gimli.util.Model - 10 abstracts: 0.8617 seconds
+INFO  [main] pt.ua.tm.gimli.util.Model - Parsing: FW
+INFO  [main] pt.ua.tm.gimli.util.Model - Entity: RNA
+INFO  [main] pt.ua.tm.gimli.util.Model - Corpus: resources/corpus/gold/jnlpba/train/corpus_rna.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Model: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Token: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Stem: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Lemma: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - POS: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Chunk: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NLP: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Capitalization: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Counting: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Symbols: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NGrams: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Suffix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Prefix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Greek: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Roman: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Word Shape: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - PRGE: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Biomedical Concepts: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Verbs: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Window: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Conjunctions: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Order: 1
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/train/corpus_rna.gz
+INFO  [main] pt.ua.tm.gimli.model.CRFBase - Loading model from file: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Done!
+INFO  [main] pt.ua.tm.gimli.util.Model - Total time: 0:00:09.506
+INFO  [main] pt.ua.tm.gimli.util.Model - Parsing: FW
+INFO  [main] pt.ua.tm.gimli.util.Model - Entity: RNA
+INFO  [main] pt.ua.tm.gimli.util.Model - Corpus: resources/corpus/gold/jnlpba/test/corpus.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Model: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Token: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Stem: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Lemma: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - POS: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Chunk: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NLP: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Capitalization: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Counting: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Symbols: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - NGrams: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Suffix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Prefix: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Greek: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Roman: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Word Shape: true
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - PRGE: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Biomedical Concepts: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Verbs: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Window: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Conjunctions: false
+INFO  [main] pt.ua.tm.gimli.config.ModelConfig - Order: 1
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/test/corpus.gz
+INFO  [main] pt.ua.tm.gimli.model.CRFBase - Loading model from file: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Done!
+INFO  [main] pt.ua.tm.gimli.util.Model - Total time: 0:00:03.145
+INFO  [main] pt.ua.tm.gimli.util.Model - Parsing: FW
+INFO  [main] pt.ua.tm.gimli.util.Model - Entity: RNA
+INFO  [main] pt.ua.tm.gimli.util.Model - Corpus: resources/corpus/gold/jnlpba/test/corpus.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Model: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/test/corpus.gz
+INFO  [main] pt.ua.tm.gimli.model.CRFBase - Loading model from file: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Done!
+INFO  [main] pt.ua.tm.gimli.util.Model - Total time: 0:00:03.127
+INFO  [main] pt.ua.tm.gimli.util.Model - Parsing: FW
+INFO  [main] pt.ua.tm.gimli.util.Model - Entity: RNA
+INFO  [main] pt.ua.tm.gimli.util.Model - Corpus: resources/corpus/gold/jnlpba/train/corpus_rna.gz
+INFO  [main] pt.ua.tm.gimli.util.Model - Model: /Users/david/Desktop/crf.gz
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/train/corpus_rna.gz
+INFO  [main] pt.ua.tm.gimli.model.CRFModel - Extracting features and converting data into training format...
+ERROR [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Please specify the corpus file.
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Corpus: resources/corpus/gold/jnlpba/test/corpus.gz
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Models:
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - 	1: resources/models/gimli/jnlpba_protein_fw_o2.gz, protein, config/jnlpba_protein.config, FW
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Output: /Users/david/Desktop/test
+INFO  [main] pt.ua.tm.gimli.corpus.Corpus - Loading corpus from file: resources/corpus/gold/jnlpba/test/corpus.gz
+INFO  [main] pt.ua.tm.gimli.model.CRFBase - Loading model from file: resources/models/gimli/jnlpba_protein_fw_o2.gz
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Annotating the corpus using 1 model for protein...
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Writing the corpus in the JNLPBA format...
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Done!
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Total time: 0:00:46.375
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Per sentence: 0.0120 seconds
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - Per abstract: 0.1203 seconds
+INFO  [main] pt.ua.tm.gimli.writer.JNLPBAWriter - 10 abstracts: 1.2027 seconds
