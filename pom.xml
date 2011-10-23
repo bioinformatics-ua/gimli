@@ -48,7 +48,7 @@
         <!-- Browsable view of the SCM repository -->
         <url>https://github.com/davidcampos/gimli</url>
         <!-- Read only connection -->
-        <connection>scm:git:git://github.com/davidcampos/gimli</connection>
+        <connection>scm:git:git://github.com/davidcampos/gimli.git</connection>
         <!-- Read/Write connection -->
         <developerConnection>scm:git:https://git@github.com:davidcampos/gimli.git</developerConnection>
     </scm>
