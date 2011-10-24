@@ -184,6 +184,17 @@
                 <enabled>true</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>tm</id>
+            <name>Text Mining</name>
+            <url>http://bioinformatics.ua.pt/maven/content/groups/tm</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
 
