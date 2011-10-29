@@ -20,7 +20,7 @@ Project Structure
 -----------------
 This project is organized as follows:
 
-config/							- model configuration files
+[config/							- model configuration files
 
 resources/
 
@@ -42,13 +42,13 @@ src/main/
 
 		lexicons/				- biomedical lexicons
 
-		models/					- trained models for internal tools
+		models/					- trained models for internal tools]
 
 Team
 ----
-	  David Campos: david.campos(a)ua.pt, 	http://davidcampos.pt.vu
+	  David Campos: david.campos(a)ua.pt
 	  Sérgio Matos: aleixomatos(a)ua.pt
-José Luís Oliveira: jlo(a)ua.pt, 			http://www.ieeta.pt/~jlo
+José Luís Oliveira: jlo(a)ua.pt
 
 
 License
