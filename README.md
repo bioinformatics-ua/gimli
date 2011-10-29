@@ -1,3 +1,5 @@
+![](http://bioinformatics.ua.pt/wp-content/uploads/2011/09/gimli.png)
+
 GIMLI
 =====
 Gimli is a library and tool for high-performance and multi-corpus recognition of biomedical entity names.
