@@ -7,6 +7,7 @@ Go to http://bioinformatics.ua.pt/gimli for more information.
 Documentation
 -------------
 Full Documentation: http://bioinformatics.ua.pt/gimli/doc
+	   
 	   API Javadoc:	http://bioinformatics.ua.pt/gimli/apidoc
 
 Bug tracker
@@ -18,24 +19,36 @@ https://github.com/davidcampos/gimli/issues
 Project Structure
 -----------------
 This project is organized as follows:
+
 config/							- model configuration files
+
 resources/
+
 	corpus/						- used corpora
+
 	evaluation/					- evaluation scripts
+
 	models/						- trained models
+
 	tools/						- internal tools
+
 gimli.sh						- executable
+
 src/main/
+
 	java/						- source code
+
 	resources/
+
 		lexicons/				- biomedical lexicons
+
 		models/					- trained models for internal tools
 
 Team
 ----
-	  David Campos: david.campos(a)ua.pt 	[http://davidcampos.pt.vu]
+	  David Campos: david.campos(a)ua.pt, 	http://davidcampos.pt.vu
 	  Sérgio Matos: aleixomatos(a)ua.pt
-José Luís Oliveira: jlo(a)ua.pt 			[http://www.ieeta.pt/~jlo]
+José Luís Oliveira: jlo(a)ua.pt, 			http://www.ieeta.pt/~jlo
 
 
 License
