@@ -32,9 +32,9 @@ This project is organized as follows:
 
 		tools/						- internal tools
 
-		gimli.sh						- executable
+	gimli.sh						- executable
 
-		src/main/
+	src/main/
 
 		java/						- source code
 
@@ -46,9 +46,11 @@ This project is organized as follows:
 
 Team
 ----
-David Campos: david.campos(a)ua.pt
-Sérgio Matos: aleixomatos(a)ua.pt
-José Luís Oliveira: jlo(a)ua.pt
+**David Campos**: david.campos(a)ua.pt
+
+**Sérgio Matos**: aleixomatos(a)ua.pt
+
+**José Luís Oliveira**: jlo(a)ua.pt
 
 
 License
