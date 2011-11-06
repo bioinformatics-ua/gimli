@@ -351,4 +351,41 @@ public class Corpus {
         }
         return count;
     }
+
+    /**
+     * Clone a corpus.
+     * @return The cloned corpus.
+     */
+    public Corpus clone() {
+        Corpus c = new Corpus(format, entity);
+        c.parsing = parsing;
+
+        for (int i = 0; i < size(); i++) {
+            c.addSentence(getSentence(i).clone(c));
+        }
+        return c;
+    }
+
+    public static Corpus merge(Corpus[] corpora) throws GimliException {
+
+        if (corpora.length < 2) {
+            throw new GimliException("You have to provide at least two corpora to merge.");
+        }
+
+        for (int i = 0; i < corpora.length - 1; i++) {
+            if (( !corpora[i].getParsing().equals(corpora[i + 1].getParsing()) )
+                    || ( !corpora[i].getFormat().equals(corpora[i + 1].getFormat()) )
+                    || ( !corpora[i].getEntity().equals(corpora[i + 1].getEntity()) )) {
+                throw new GimliException("All the corpora must have the same Encoding format, Parsing direction and target entity type.");
+            }
+        }
+
+        Corpus c = new Corpus(corpora[0].getFormat(), corpora[0].getEntity());
+        for (int i = 0; i < corpora.length; i++) {
+            for (int j = 0; j < corpora[i].size(); j++) {
+                c.addSentence(corpora[i].getSentence(j).clone(c));
+            }
+        }
+        return c;
+    }
 }

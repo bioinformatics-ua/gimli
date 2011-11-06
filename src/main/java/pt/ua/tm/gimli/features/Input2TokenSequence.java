@@ -60,15 +60,15 @@ public class Input2TokenSequence extends Pipe {
      */
     @Override
     public Instance pipe(Instance carrier) {
-        
+
         String sentenceLines = (String) carrier.getData();
-        
+
         String[] tokens = sentenceLines.split("\n");
         TokenSequence data = new TokenSequence(tokens.length);
         LabelSequence target = new LabelSequence((LabelAlphabet) getTargetAlphabet(), tokens.length);
-        StringBuffer source = new StringBuffer();        
+        StringBuffer source = new StringBuffer();
 
-        String text, lemma, pos, chunk, label;
+        String text, lemma = "", pos = "", chunk = "", label;
 
         ArrayList<Token> newTokens = new ArrayList<Token>();
         ArrayList<String> newLabels = new ArrayList<String>();
@@ -77,54 +77,67 @@ public class Input2TokenSequence extends Pipe {
             String[] features = t.split("\t");
 
             /*if (features.length != 6) {
-                throw new IllegalStateException("Line \"" + t + "\" doesn't have 6 elements: Token, Lemma, POS, Chunk, Dict and Label.");
-            }*/            
-            
+            throw new IllegalStateException("Line \"" + t + "\" doesn't have 6 elements: Token, Lemma, POS, Chunk, Dict and Label.");
+            }*/
+
             text = features[0];
-            lemma = features[1];
-            pos = features[2];
-            chunk = features[3];            
-            label = features[features.length-1];
+            if (config.isLemma()) {
+                lemma = features[1];
+            }
+            if (config.isPos()) {
+                pos = features[2];
+            }
+            if (config.isChunk()) {
+                chunk = features[3];
+            }
+            label = features[features.length - 1];
 
             // Numbers normalisation
             /*if (nm){
-                Pattern num = Pattern.compile("[0-9]+");
-                Matcher match = num.matcher(text);
-                text = match.replaceAll("0");
-                
-                match = num.matcher(lemma);
-                lemma = match.replaceAll("0");
+            Pattern num = Pattern.compile("[0-9]+");
+            Matcher match = num.matcher(text);
+            text = match.replaceAll("0");
+            
+            match = num.matcher(lemma);
+            lemma = match.replaceAll("0");
             }*/
             Token token = new Token(text);
 
-            if (config.isToken())
+            if (config.isToken()) {
                 token.setFeatureValue("WORD=" + text, 1.0);
-            if (config.isLemma())
+            }
+            if (config.isLemma()) {
                 token.setFeatureValue(lemma, 1.0);
-            if (config.isPos())
+            }
+            if (config.isPos()) {
                 token.setFeatureValue(pos, 1.0);
-            if (config.isChunk())
+            }
+            if (config.isChunk()) {
                 token.setFeatureValue(chunk, 1.0);
-            
-            for (int i=4; i<features.length-1; i++){
-                if (!config.isPrge() && features[i].contains("LEXICON=" + DictionaryType.PRGE))
+            }
+
+            for (int i = 4; i < features.length - 1; i++) {
+                if (!config.isPrge() && features[i].contains("LEXICON=" + DictionaryType.PRGE)) {
                     continue;
-                if (!config.isConcepts() && features[i].contains("LEXICON=" + DictionaryType.CONCEPT))
+                }
+                if (!config.isConcepts() && features[i].contains("LEXICON=" + DictionaryType.CONCEPT)) {
                     continue;
-                if (!config.isVerbs() && features[i].contains("LEXICON=" + DictionaryType.VERB))
+                }
+                if (!config.isVerbs() && features[i].contains("LEXICON=" + DictionaryType.VERB)) {
                     continue;
-                if (!config.isNLP() && (
-                        features[i].contains("SUB=") ||
-                        features[i].contains("OBJ=") ||
-                        features[i].contains("NMOD_OF=") ||
-                        features[i].contains("NMOD_BY=") ||
-                        features[i].contains("VMOD_OF=") ||
-                        features[i].contains("VMOD_BY=")))
+                }
+                if (!config.isNLP() && ( features[i].contains("SUB=")
+                        || features[i].contains("OBJ=")
+                        || features[i].contains("NMOD_OF=")
+                        || features[i].contains("NMOD_BY=")
+                        || features[i].contains("VMOD_OF=")
+                        || features[i].contains("VMOD_BY=") )) {
                     continue;
-                
+                }
+
                 token.setFeatureValue(features[i], 1.0);
             }
-            
+
             newTokens.add(token);
             newLabels.add(label);
 
@@ -135,23 +148,24 @@ public class Input2TokenSequence extends Pipe {
 
         // Invert direction
         /*if (config.isReverse()){
-            Collections.reverse(newTokens);
-            Collections.reverse(newLabels);
-            source = source.reverse();
+        Collections.reverse(newTokens);
+        Collections.reverse(newLabels);
+        source = source.reverse();
         }*/
 
         // Add Tokens to Data
-        for (Token t:newTokens){
+        for (Token t : newTokens) {
             StringBuilder sb = new StringBuilder(t.getText());
             /*if (config.isReverse())
-                sb = sb.reverse();*/
+            sb = sb.reverse();*/
             t.setText(sb.toString());
             data.add(t);
         }
 
         // Add labels to Target
-        for (String l:newLabels)
+        for (String l : newLabels) {
             target.add(l);
+        }
 
         carrier.setData(data);
         carrier.setTarget(target);

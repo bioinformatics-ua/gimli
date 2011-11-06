@@ -39,6 +39,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import pt.ua.tm.gimli.config.Constants;
 import pt.ua.tm.gimli.corpus.Corpus;
 import pt.ua.tm.gimli.exception.GimliException;
 import pt.ua.tm.gimli.features.Input2TokenSequence;
@@ -64,19 +65,7 @@ public class CRFModel extends CRFBase {
      * {@link Logger} to be used in the class.
      */
     private static Logger logger = LoggerFactory.getLogger(CRFModel.class);
-    /**
-     * Regular expression to identify uppercase letters.
-     */
-    private static String CAPS = "[A-Z]";
-    /**
-     * Regular expression to identify lowercase letters.
-     */
-    private static String LOW = "[a-z]";
-    /**
-     * Regular expression to identify Greek letters.
-     */
-    private static String GREEK = "(alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)";
-
+    
     /**
      * Constructor.
      * @param config Model configuration.
@@ -115,10 +104,10 @@ public class CRFModel extends CRFBase {
             }
 
             if (config.isCapitalization()) {
-                pipe.add(new RegexMatches("InitCap", Pattern.compile(CAPS + ".*")));
-                pipe.add(new RegexMatches("EndCap", Pattern.compile(".*" + CAPS)));
-                pipe.add(new RegexMatches("AllCaps", Pattern.compile(CAPS + "+")));
-                pipe.add(new RegexMatches("Lowercase", Pattern.compile(LOW + "+")));
+                pipe.add(new RegexMatches("InitCap", Pattern.compile(Constants.CAPS + ".*")));
+                pipe.add(new RegexMatches("EndCap", Pattern.compile(".*" + Constants.CAPS)));
+                pipe.add(new RegexMatches("AllCaps", Pattern.compile(Constants.CAPS + "+")));
+                pipe.add(new RegexMatches("Lowercase", Pattern.compile(Constants.LOW + "+")));
                 pipe.add(new MixCase());
                 pipe.add(new RegexMatches("DigitsLettersAndSymbol", Pattern.compile("[0-9a-zA-z]+[-%/\\[\\]:;()'\"*=+][0-9a-zA-z]+")));
             }
@@ -169,7 +158,7 @@ public class CRFModel extends CRFBase {
             }
 
             if (config.isGreek()) {
-                pipe.add(new RegexMatches("GREEK", Pattern.compile(GREEK, Pattern.CASE_INSENSITIVE)));
+                pipe.add(new RegexMatches("GREEK", Pattern.compile(Constants.GREEK, Pattern.CASE_INSENSITIVE)));
             }
 
             if (config.isRoman()) {

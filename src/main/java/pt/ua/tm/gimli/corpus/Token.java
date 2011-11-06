@@ -309,4 +309,17 @@ public class Token {
         }
         return sb.toString().trim();
     }
+    
+    public Token clone (Sentence s) {
+        Token t = new Token(s, start, end, text, index);
+        t.setLabel(label);
+        for (int i=0; i<features.size(); i++){
+            t.addFeature(features.get(i));
+        }
+        return t;
+    }
+    
+    public void removeFeatures(){
+        features = new ArrayList<String>();
+    }
 }

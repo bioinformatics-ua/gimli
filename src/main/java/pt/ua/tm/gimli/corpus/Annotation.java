@@ -147,6 +147,11 @@ public class Annotation {
         return true;
     }
 
+    public Annotation clone(Sentence s){
+        Annotation a = new Annotation(s, startIndex, endIndex, score);
+        return a;
+    }
+    
     /**
      * Override the hashCode method to consider all the internal variables.
      * @return Unique number for each annotation.

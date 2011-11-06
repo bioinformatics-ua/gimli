@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<!--
+Gimli - High-performance and multi-corpus recognition of biomedical
+entity names
+
+Copyright (C) 2011 David Campos, Universidade de Aveiro, Instituto de
+Engenharia Electrónica e Telemática de Aveiro
+
+Gimli is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 3.0 Unported License. To view a copy of
+this license, visit http://creativecommons.org/licenses/by-nc-sa/3.0/.
+
+Gimli is a free software, you are free to copy, distribute, change and
+transmit it. However, you may not use Gimli for commercial purposes.
+
+Gimli is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.
+-->
+</head>
+<body bgcolor="white">
+    Provides a Sentence Splitter implementation. It was trained using two
+    corpora: JNLPBA and PennBioIE Oncology. A total of 3561 abstracts was used
+    for training procedures.
+    <p>
+        In order to evaluate the performance of this solution, we merged the
+        corpora and split it in two parts (both parts contain equivalent
+        proportions of each corpus.):
+        <ul>
+            <li>Training: 2867 abstracts</li>
+            <li>Testing: 694 abstracts</li>
+        </ul>
+        
+        After training the CRF Model using the training corpus, Gimli SS
+        achieved the following results in the test corpus:
+        <ul>
+            <li><strong>Accuracy: 99.89%</strong></li>
+            <li>Precision: 99.91%</li>
+            <li>Recall: 99.91%</li>
+            <li><strong>F1: 99.91%</strong></li>
+        </ul>
+        We also made a study of the splitting speed, considering that each
+        abstract contains an average of 7 sentences:
+        <ul>
+            <li><strong>5.3 milliseconds</strong> per abstract.</li>
+        </ul>
+    </p>
+
+<h2>Related Documentation</h2>
+
+For overviews, tutorials, examples, guides, and tool documentation, please see:
+<ul>
+  <li><a href="http://bioinformatics.ua.pt/gimli" target="_blank">http://bioinformatics.ua.pt/gimli</a>
+</ul>
+
+</body>
+</html>
