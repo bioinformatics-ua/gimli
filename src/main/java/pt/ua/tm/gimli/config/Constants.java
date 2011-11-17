@@ -148,7 +148,18 @@ public class Constants {
          */
         VERB;
     }
-    
+    /**
+     * Regular expression to identify uppercase letters.
+     */
+    public static String CAPS = "[A-Z]";
+    /**
+     * Regular expression to identify lowercase letters.
+     */
+    public static String LOW = "[a-z]";
+    /**
+     * Regular expression to identify Greek letters.
+     */
+    public static String GREEK = "(alpha|beta|gamma|delta|epsilon|zeta|eta|theta|iota|kappa|lambda|mu|nu|xi|omicron|pi|rho|sigma|tau|upsilon|phi|chi|psi|omega)";
     /**
      * Prefix folder that contains the required tools.
      */
@@ -168,28 +179,28 @@ public class Constants {
      * models trained on biomedical documents (GENIA).
      */
     /*public static final String[] ENJUPARSERCOMMAND = {
-        TOOLSPREFIXDIR + "enju-2.4.2/enju",
-        "-genia"
+    TOOLSPREFIXDIR + "enju-2.4.2/enju",
+    "-genia"
     };*/
     /**
      * Command line to parse texts using Enju, without performing tokenisation
      * and using models trained on biomedical documents (GENIA).
      */
     /*public static final String[] ENJUPARSERCOMMANDNT = {
-        TOOLSPREFIXDIR + "enju-2.4.2/enju",
-        "-genia",
-        "-nt"
+    TOOLSPREFIXDIR + "enju-2.4.2/enju",
+    "-genia",
+    "-nt"
     };*/
     /**
      * Command line to parse texts using GeniaTagger, performing tokenisation
      * and using models trained on biomedical documents (GENIA).
      */
     /*public static final String[] GENIATAGGERCOMMAND = {TOOLSPREFIXDIR
-        + "geniatagger/genia"};*/
+    + "geniatagger/genia"};*/
     /**
      * Command line to parse texts using GeniaTagger, without performing
      * tokenisation and using models trained on biomedical documents (GENIA).
      */
     /*public static final String[] GENIATAGGERCOMMANDNT = {TOOLSPREFIXDIR
-        + "geniatagger/genia", "-nt"};*/
+    + "geniatagger/genia", "-nt"};*/
 }

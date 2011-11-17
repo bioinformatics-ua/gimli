@@ -368,8 +368,10 @@ public class Sentence {
             t = getToken(i);
             sb.append(t.getText());
             sb.append("\t");
-            sb.append(t.featuresToString());
-            sb.append("\t");
+            if (t.sizeFeatures() > 0) {
+                sb.append(t.featuresToString());
+                sb.append("\t");
+            }
             sb.append(t.getLabel().toString());
             sb.append("\n");
         }
@@ -460,6 +462,22 @@ public class Sentence {
         ret = ret.trim();
 
         return ret;
+    }
+
+    public Sentence clone(Corpus c) {
+        Sentence s = new Sentence(c);
+
+        for (int i = 0; i < size(); i++) {
+            s.addToken(getToken(i).clone(s));
+        }
+
+        for (int i = 0; i < annotations.size(); i++) {
+            s.addAnnotation(annotations.get(i).clone(s));
+        }
+        
+        s.setId(id);
+
+        return s;
     }
 
     /**
