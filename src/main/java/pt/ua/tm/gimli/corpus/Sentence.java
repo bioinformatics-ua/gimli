@@ -474,6 +474,8 @@ public class Sentence {
         for (int i = 0; i < annotations.size(); i++) {
             s.addAnnotation(annotations.get(i).clone(s));
         }
+        
+        s.setId(getId());
 
         return s;
     }
