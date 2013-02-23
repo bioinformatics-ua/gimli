@@ -1,5 +1,5 @@
 #!/bin/bash
-cp=target/gimli-1.0-jar-with-dependencies.jar:$CLASSPATH
+cp=target/gimli-1.0.1-jar-with-dependencies.jar:$CLASSPATH
 MEMORY=5G
 JAVA_COMMAND="java -Xmx$MEMORY -classpath $cp"
 CMD=$1

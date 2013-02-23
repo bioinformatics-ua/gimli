@@ -21,15 +21,25 @@ package pt.ua.tm.gimli.corpus;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import pt.ua.tm.gimli.config.Constants;
 import pt.ua.tm.gimli.config.Constants.Parsing;
 import pt.ua.tm.gimli.config.Constants.LabelTag;
 import pt.ua.tm.gimli.config.Constants.LabelFormat;
+import pt.ua.tm.gimli.config.Resources;
+import pt.ua.tm.gimli.dictionary.DictionaryMatcher;
+import pt.ua.tm.gimli.dictionary.DictionaryMatchers;
+import pt.ua.tm.gimli.exception.GimliException;
+import pt.ua.tm.gimli.external.gdep.GDepCorpus;
+import pt.ua.tm.gimli.external.gdep.GDepSentence;
+import pt.ua.tm.gimli.external.gdep.GDepToken;
+import pt.ua.tm.gimli.external.wrapper.Parser;
 
 /**
  * Used to represent sentence.
  *
- * @author David Campos
- * (<a href="mailto:david.campos@ua.pt">david.campos@ua.pt</a>)
+ * @author David Campos (<a
+ * href="mailto:david.campos@ua.pt">david.campos@ua.pt</a>)
  * @version 1.0
  * @since 1.0
  */
@@ -54,6 +64,7 @@ public class Sentence {
 
     /**
      * Constructor.
+     *
      * @param c The corpus of the sentence.
      */
     public Sentence(Corpus c) {
@@ -62,8 +73,56 @@ public class Sentence {
         this.annotations = new ArrayList<Annotation>();
     }
 
+    public void parse(Parser parser, String sentenceText) throws GimliException {
+        // Pre-process
+        sentenceText = sentenceText.replaceAll("/", " / ");
+        sentenceText = sentenceText.replaceAll("-", " - ");
+        sentenceText = sentenceText.replaceAll("[.]", " . ");
+        sentenceText = sentenceText.replaceAll("//s+", " ");
+        List<Object> output = parser.parse(sentenceText);
+
+        // Get GDep Output
+        GDepSentence gs = new GDepSentence(new GDepCorpus());
+        for (Object obj : output) {
+            String[] parts = obj.toString().split("\t");
+
+            String text = parts[1];
+            text = text.replaceAll("''", "\"");
+            text = text.replaceAll("``", "\"");
+
+            String lemma = parts[2];
+            String chunk = parts[3];
+            String pos = parts[4];
+            int depToken = Integer.valueOf(parts[6]) - 1;
+            String depTag = parts[7];
+
+
+            GDepToken gt = new GDepToken(text, lemma, pos, chunk, depToken, depTag);
+            gs.addToken(gt);
+        }
+
+        //Add token and respective features from GDep output
+        int start = 0;
+        for (int k = 0; k < gs.size(); k++) {
+            GDepToken gt = gs.getToken(k);
+            Token t = new Token(this, start, k, gs);
+            start = t.getEnd() + 1;
+            addToken(t);
+        }
+
+        // Dictionary matching as features
+        DictionaryMatchers.getInstance().get("prge").match(this);        
+        DictionaryMatchers.getInstance().get("verbs").match(this);
+        DictionaryMatchers.getInstance().get("aminoacid").match(this);
+        DictionaryMatchers.getInstance().get("nucleicacid").match(this);
+        DictionaryMatchers.getInstance().get("nucleobase").match(this);
+        DictionaryMatchers.getInstance().get("nucleoside").match(this);
+        DictionaryMatchers.getInstance().get("nucleotide").match(this);
+    }
+
     /**
      * Get specific annotation of the sentence.
+     *
      * @param i Index of the annotation.
      * @return The annotation.
      */
@@ -76,6 +135,7 @@ public class Sentence {
 
     /**
      * Get the corpus of the sentence.
+     *
      * @return The corpus.
      */
     public Corpus getCorpus() {
@@ -84,6 +144,7 @@ public class Sentence {
 
     /**
      * Get the identifier of the sentence.
+     *
      * @return The ID.
      */
     public String getId() {
@@ -92,6 +153,7 @@ public class Sentence {
 
     /**
      * Set sentence identifier.
+     *
      * @param id The new identifier of the sentence.
      */
     public void setId(final String id) {
@@ -100,6 +162,7 @@ public class Sentence {
 
     /**
      * Add a token to the sentence.ß
+     *
      * @param t The token.
      */
     public void addToken(Token t) {
@@ -108,6 +171,7 @@ public class Sentence {
 
     /**
      * Get specific token of the sentence.
+     *
      * @param i The index of the token.
      * @return The token.
      */
@@ -117,6 +181,7 @@ public class Sentence {
 
     /**
      * Set specific token of the sentence.
+     *
      * @param i The index of the token.
      * @param t The token.
      */
@@ -126,6 +191,7 @@ public class Sentence {
 
     /**
      * Get the size of the sentence, a.k.a the number of tokens.
+     *
      * @return The number of tokens.
      */
     public int size() {
@@ -133,9 +199,9 @@ public class Sentence {
     }
 
     /**
-     * Remove all annotations of the sentence.
-     * Remove on the list of annotations, and change all the labels of tokens
-     * to <code>O</code>.
+     * Remove all annotations of the sentence. Remove on the list of
+     * annotations, and change all the labels of tokens to
+     * <code>O</code>.
      */
     public void cleanAnnotations() {
         annotations = new ArrayList<Annotation>();
@@ -170,6 +236,7 @@ public class Sentence {
     /**
      * Add annotations to the sentence considering that the tokens are already
      * tagged.
+     *
      * @param score The confidence value to generate the annotations.
      */
     public void addAnnotationsFromTags(double score) {
@@ -183,6 +250,7 @@ public class Sentence {
     /**
      * Add annotations to the sentence considering that the tokens are already
      * tagged, and the corpus is in Forward direction.
+     *
      * @param score The confidence value to generate the annotations.
      */
     private void addAnnotationsFromTagsForward(final double score) {
@@ -223,6 +291,7 @@ public class Sentence {
     /**
      * Add annotations to the sentence considering that the tokens are already
      * tagged, and the corpus is in Backward direction.
+     *
      * @param score The confidence value to generate the annotations.
      */
     private void addAnnotationsFromTagsBackward(final double score) {
@@ -261,10 +330,11 @@ public class Sentence {
     }
 
     /**
-     * From the whole set of annotations, get the first annotation that is
-     * equal to the one provided.
+     * From the whole set of annotations, get the first annotation that is equal
+     * to the one provided.
+     *
      * @param a The annotation.
-     * @return The annotation that is equal to the one provided by argument,
+     * @return The annotation that is equal to the one provided by argument, *
      * or <code>null</code> otherwise.
      */
     public Annotation containsExactAnnotation(final Annotation a) {
@@ -279,8 +349,9 @@ public class Sentence {
     /**
      * From the whole set of annotations, get the first annotation that contains
      * the one provided.
+     *
      * @param a The annotation.
-     * @return The annotation that contains to the one provided by argument,
+     * @return The annotation that contains to the one provided by argument, *
      * or <code>null</code> otherwise.
      */
     public Annotation containsApproximateAnnotation(final Annotation a) {
@@ -295,6 +366,7 @@ public class Sentence {
     /**
      * Add annotation to sentence and update the labels of the tokens following
      * the desired format.
+     *
      * @param a Annotation to add to the sentence.
      */
     public void addAnnotation(final Annotation a) {
@@ -336,6 +408,7 @@ public class Sentence {
 
     /**
      * Remove specific annotation.
+     *
      * @param i Index of the annotation to be removed.
      */
     public void removeAnnotation(final int i) {
@@ -344,6 +417,7 @@ public class Sentence {
 
     /**
      * Remove annotation from sentence.
+     *
      * @param a Annotation to be removed.
      */
     public void removeAnnotation(final Annotation a) {
@@ -358,6 +432,7 @@ public class Sentence {
 
     /**
      * Get Sentence in a format to save the corpus in a file.
+     *
      * @return String presenting the sentence.
      */
     public final String toExportFormat() {
@@ -377,68 +452,79 @@ public class Sentence {
         return sb.toString();
     }
 
-    /*******************************************************************/
-    /*******************************************************************/
+    /**
+     * ****************************************************************
+     */
+    /**
+     * ****************************************************************
+     */
     /*REFAZER CONVERSÃO PARA XML*/
-    /*******************************************************************/
-    /*******************************************************************/
+    /**
+     * ****************************************************************
+     */
+    /**
+     * ****************************************************************
+     */
     /**
      * Convert a sentence to the IeXML format.
-     * @return {@link StringBuilder} that partialMatch the sentence in the specified format
+     *
+     * @return {@link StringBuilder} that partialMatch the sentence in the
+     * specified format
      */
     /*public final StringBuilder convertToIeXMLFormat() {
-    StringBuilder sb = new StringBuilder();
+     StringBuilder sb = new StringBuilder();
     
-    String labelB = "";
-    int counter = 0;
-    for (Token t : tokens) {
-    String label = t.getLabel().toString();
-    String text = t.getText();
+     String labelB = "";
+     int counter = 0;
+     for (Token t : tokens) {
+     String label = t.getLabel().toString();
+     String text = t.getText();
     
-    //text = StringEscapeUtils.escapeHtml(text);
-    //text = text.replaceAll("'", "&apos;");
-    //text = text.replaceAll("&#39;", "&apos;");
+     //text = StringEscapeUtils.escapeHtml(text);
+     //text = text.replaceAll("'", "&apos;");
+     //text = text.replaceAll("&#39;", "&apos;");
     
-    if (label.equals(Constants.getB())) {
-    if (labelB.equals(Constants.getB()) || labelB.equals(Constants.getI())) {
-    sb.append("</e> ");
-    }
-    sb.append(" <e id=\":::PRGE\">");
-    sb.append(text);
-    } else if (label.equals(Constants.getI())) {
-    sb.append(" ");
-    sb.append(text);
-    } else if (label.equals(Constants.getO())) {
-    if (labelB.equals(Constants.getO())) {
-    sb.append(" ");
-    sb.append(text);
-    } else if (labelB.equals(Constants.getB()) || labelB.equals(Constants.getI())) {
-    sb.append("</e> ");
-    sb.append(text);
-    } else {
-    sb.append(text);
-    }
-    }
+     if (label.equals(Constants.getB())) {
+     if (labelB.equals(Constants.getB()) || labelB.equals(Constants.getI())) {
+     sb.append("</e> ");
+     }
+     sb.append(" <e id=\":::PRGE\">");
+     sb.append(text);
+     } else if (label.equals(Constants.getI())) {
+     sb.append(" ");
+     sb.append(text);
+     } else if (label.equals(Constants.getO())) {
+     if (labelB.equals(Constants.getO())) {
+     sb.append(" ");
+     sb.append(text);
+     } else if (labelB.equals(Constants.getB()) || labelB.equals(Constants.getI())) {
+     sb.append("</e> ");
+     sb.append(text);
+     } else {
+     sb.append(text);
+     }
+     }
     
-    // Add close tag on the end of the sentence
-    if (counter == ( tokens.size() - 1 )) {
-    if (label.equals(Constants.getB()) || label.equals(Constants.getI())) {
-    sb.append("</e> ");
-    }
-    }
+     // Add close tag on the end of the sentence
+     if (counter == ( tokens.size() - 1 )) {
+     if (label.equals(Constants.getB()) || label.equals(Constants.getI())) {
+     sb.append("</e> ");
+     }
+     }
     
-    labelB = label;
-    counter++;
-    }
+     labelB = label;
+     counter++;
+     }
     
-    if (sb.charAt(0) == ' ') {
-    sb.deleteCharAt(0);
-    }
+     if (sb.charAt(0) == ' ') {
+     sb.deleteCharAt(0);
+     }
     
-    return sb;
-    }*/
+     return sb;
+     }*/
     /**
      * Get the number of annotations associated with this sentence.
+     *
      * @return The number of annotations.
      */
     public int getNumberAnnotations() {
@@ -447,7 +533,8 @@ public class Sentence {
 
     /**
      * Provide text representation of the sentence.
-     * @return Text of the sentence. 
+     *
+     * @return Text of the sentence.
      */
     @Override
     public String toString() {
@@ -464,6 +551,7 @@ public class Sentence {
 
     /**
      * Compare two sentences.
+     *
      * @param obj The sentence to be compared with.
      * @return <code>True</code> if the two sentences are equal, and
      * <code>False</code> otherwise.
@@ -491,6 +579,7 @@ public class Sentence {
 
     /**
      * Override the hashCode method to consider all the internal variables.
+     *
      * @return Unique number for each sentence.
      */
     @Override

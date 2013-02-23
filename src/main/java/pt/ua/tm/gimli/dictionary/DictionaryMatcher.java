@@ -38,19 +38,17 @@ import pt.ua.tm.gimli.exception.GimliException;
 
 /**
  * Perform dictionary matching and provide the result as features of the tokens.
- *<p>
- * FOR NOW IT IS WORKING OK, BUT I NEED TO CHANGE THE IMPLEMENTATION, IN ORDER
- * TO REMOVE THE DEPENDENCY OF LINGPIPE.
- * NEEDS TO BE MORE EFFICIENT WITH LARGE DICTIONARIES.
- * I WILL CHANGE THAT AFTER WORKING WITH NORMALISATION.
+ * <p> FOR NOW IT IS WORKING OK, BUT I NEED TO CHANGE THE IMPLEMENTATION, IN
+ * ORDER TO REMOVE THE DEPENDENCY OF LINGPIPE. NEEDS TO BE MORE EFFICIENT WITH
+ * LARGE DICTIONARIES. I WILL CHANGE THAT AFTER WORKING WITH NORMALISATION.
  *
- * @author David Campos
- * (<a href="mailto:david.campos@ua.pt">david.campos@ua.pt</a>)
+ * @author David Campos (<a
+ * href="mailto:david.campos@ua.pt">david.campos@ua.pt</a>)
  * @version 1.0
  * @since 1.0
  */
 public class DictionaryMatcher {
-    
+
     /**
      * Chunker used to remove stopwords.
      */
@@ -66,6 +64,7 @@ public class DictionaryMatcher {
 
     /**
      * Load the dictionary chunker.
+     *
      * @return The exact dictionary chunker with the dictionary loaded
      * @throws GimliException Problem reading the dictionary list
      */
@@ -96,6 +95,7 @@ public class DictionaryMatcher {
 
     /**
      * Load the dictionary chunker
+     *
      * @return The exact dictionary chunker with the dictionary loaded
      * @throws GimliException Problem reading the dictionary file
      */
@@ -138,6 +138,7 @@ public class DictionaryMatcher {
 
     /**
      * Checks if a text is a stopword or not.
+     *
      * @param text Text to be analyzed.
      * @return true if the input text is a stopword, false otherwise
      */
@@ -157,6 +158,7 @@ public class DictionaryMatcher {
 
     /**
      * Constructor.
+     *
      * @param stopwords {@link InputStream} to the stopwords dictionary.
      * @param dictionary {@link InputStream} to the dictionary.
      * @param withVariations <code>True</code> if is to generate orthographic
@@ -175,6 +177,7 @@ public class DictionaryMatcher {
 
     /**
      * Match the corpus with the dictionary.
+     *
      * @param corpus The corpus to be matched.
      */
     public void match(Corpus corpus) {
@@ -182,19 +185,30 @@ public class DictionaryMatcher {
         LabelTag[] labels;
         for (int i = 0; i < corpus.size(); i++) {
             s = corpus.getSentence(i);
-            labels = matchSentence(s);
+//            labels = matchSentence(s);
+//
+//            for (int j = 0; j < labels.length; j++) {
+//                if (labels[j].equals(LabelTag.I)) {
+//                    s.getToken(j).addFeature("LEXICON=" + type);
+//                }
+//            }
+//            corpus.setSentence(i, s);
+            match(s);
+        }
+    }
 
-            for (int j = 0; j < labels.length; j++) {
-                if (labels[j].equals(LabelTag.I)) {
-                    s.getToken(j).addFeature("LEXICON=" + type);
-                }
+    public void match(Sentence sentence) {
+        LabelTag[] labels = matchSentence(sentence);
+        for (int j = 0; j < labels.length; j++) {
+            if (labels[j].equals(LabelTag.I)) {
+                sentence.getToken(j).addFeature("LEXICON=" + type);
             }
-            corpus.setSentence(i, s);
         }
     }
 
     /**
      * Match sentence using the dictionary chunker.
+     *
      * @param sentence The sentence to be matched.
      * @return The resulting labels of the tokens.
      */
