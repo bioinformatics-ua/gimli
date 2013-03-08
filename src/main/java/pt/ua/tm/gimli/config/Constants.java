@@ -19,6 +19,8 @@
  */
 package pt.ua.tm.gimli.config;
 
+import java.io.File;
+
 /**
  * Store global constants and type enumerators.
  *
@@ -152,17 +154,31 @@ public class Constants {
     /**
      * Prefix folder that contains the required tools.
      */
-    private static final String TOOLSPREFIXDIR = "resources/tools/";
+    public static final String TOOLSPREFIXDIR = "resources" +File.separator + "tools" + File.separator + "gdep" + File.separator;    
+    private static final String GDEPWIN = "gdep-win32.exe";
+    private static final String GDEPLIN = "./gdep-linux64";
+    private static final String GDEPMAC = "./gdep";
+    
     /**
      * Command line to parse texts using GDep performing tokenisation.
      */
-    public static final String[] GDEPCOMMAND = {TOOLSPREFIXDIR
-        + "gdep/gdep_gimli"};
+    public static final String[] GDEPCOMMAND = {getGdepTool()};
     /**
      * Command line to parse texts using GDep without performing tokenisation.
      */
-    public static final String[] GDEPCOMMANDNT = {TOOLSPREFIXDIR
-        + "gdep/gdep_gimli", "-nt"};
+    public static final String[] GDEPCOMMANDNT = {getGdepTool(), "-nt"};
+    
+    private static String getGdepTool(){
+        String os = System.getProperty("os.name").toLowerCase();
+        
+        if (os.contains("windows")){
+            return TOOLSPREFIXDIR + GDEPWIN;
+        } else if (os.contains("mac")){
+            return GDEPMAC;
+        } else {
+            return GDEPLIN;
+        }
+    }
     /**
      * Command line to parse texts using Enju, performing tokenisation and using
      * models trained on biomedical documents (GENIA).

@@ -37,4 +37,29 @@
                 <exec.executable>${profiler.java}</exec.executable>
             </properties>
         </action>
+        <action>
+            <actionName>CUSTOM-deploy</actionName>
+            <displayName>deploy</displayName>
+            <preAction>build-with-dependencies</preAction>
+            <goals>
+                <goal>deploy</goal>
+            </goals>
+            <activatedProfiles>
+                <activatedProfile>release-profile</activatedProfile>
+            </activatedProfiles>
+        </action>
+        <action>
+            <actionName>CUSTOM-release:prepare</actionName>
+            <displayName>release:prepare</displayName>
+            <goals>
+                <goal>release:prepare</goal>
+            </goals>
+        </action>
+        <action>
+            <actionName>CUSTOM-release:perform</actionName>
+            <displayName>release:perform</displayName>
+            <goals>
+                <goal>release:perform</goal>
+            </goals>
+        </action>
     </actions>

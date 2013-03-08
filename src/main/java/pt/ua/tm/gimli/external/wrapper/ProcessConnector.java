@@ -19,6 +19,7 @@
  */
 package pt.ua.tm.gimli.external.wrapper;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -53,6 +54,20 @@ public class ProcessConnector {
         this.es = es;
     }
 
+    public void create(File dir, String... command) throws IOException {
+        ProcessBuilder pb = new ProcessBuilder(command);
+        pb.redirectErrorStream(false);
+        pb.directory(dir);
+        process = pb.start();
+
+        tis = new Thread(new StreamGobbler(is, process.getOutputStream()));
+        tis.start();
+        tos = new Thread(new StreamGobbler(process.getInputStream(), os));
+        tos.start();
+        tes = new Thread(new StreamGobbler(process.getErrorStream(), es));
+        tes.start();
+    }
+    
     /**
      * Create the process to execute the external program.
      * @param command The command line to be executed.

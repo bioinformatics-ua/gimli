@@ -21,6 +21,7 @@ package pt.ua.tm.gimli.external.wrapper;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
@@ -40,6 +41,7 @@ import pt.ua.tm.gimli.exception.GimliException;
 public abstract class Parser {
 
     protected String[] parserCommand;
+    protected File dir;
     protected PipedInputStream pis;
     protected PipedOutputStream sink;
     protected PipedOutputStream pos;
@@ -65,7 +67,13 @@ public abstract class Parser {
         br = new BufferedReader(new InputStreamReader(source));
         bw = new BufferedWriter(new OutputStreamWriter(sink));
         pc = new ProcessConnector(pis, pos, System.err);
-        pc.create(parserCommand);
+        
+        if (dir == null){
+            pc.create(parserCommand);
+        } else {
+            pc.create(dir, parserCommand);
+        }
+        
     }
 
     /**

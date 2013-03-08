@@ -19,6 +19,7 @@
  */
 package pt.ua.tm.gimli.external.gdep;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,6 +49,7 @@ public class GDepParser extends Parser {
         } else {
             parserCommand = Constants.GDEPCOMMANDNT;
         }
+        dir = new File(Constants.TOOLSPREFIXDIR);
     }
 
     /**

@@ -50,18 +50,17 @@
         <developerConnection>scm:git:git@github.com:davidcampos/gimli.git</developerConnection>
     </scm>
 
- <!--
-   Artifact deployment configuration (project redistribution)
- -->
+    <!--
+      Artifact deployment configuration (project redistribution)
+    -->
     <distributionManagement>
-   <!-- Versioned releases are published to the releases repository -->
+        <!-- Versioned releases are published to the releases repository -->
         <repository>
             <id>bioinformatics-releases</id>
             <name>Bioinformatics Nexus (Internal Releases)</name>
             <url>http://bioinformatics.ua.pt/maven/content/repositories/releases</url>
         </repository>
- 
-   <!-- Snapshot releases are published to the snapshots repository -->
+        <!-- Snapshot releases are published to the snapshots repository -->
         <snapshotRepository>
             <id>bioinformatics-snapshots</id>
             <name>Bioinformatics Nexus (Internal Snapshots)</name>
@@ -69,11 +68,29 @@
         </snapshotRepository>
     </distributionManagement>
   
-  <!--
-    Repositories used to fetch maven plugins used by the project
-  -->
+    <!--
+      Repositories used to fetch project dependencies
+    -->
+    <repositories>
+        <!-- UA.PT Bioinformatics Maven Repository -->
+        <repository>
+            <id>bioinformatics-all</id>
+            <name>Bioinformatics Nexus (All)</name>
+            <url>http://bioinformatics.ua.pt/maven/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+  
+    <!--
+      Repositories used to fetch maven plugins used by the project
+    -->
     <pluginRepositories>
-<!-- UA.PT Bioinformatics Maven Repository -->
+        <!-- UA.PT Bioinformatics Maven Repository -->
         <pluginRepository>
             <id>bioinformatics-all</id>
             <name>Bioinformatics Nexus (Plugins)</name>
@@ -173,30 +190,6 @@
             </plugin>
         </plugins>
     </build>
-  
-  
-  
-  
-   <!--
-     Repositories used to fetch project dependencies
-   -->
-    <repositories>
-    <!-- UA.PT Bioinformatics Maven Repository -->
-        <repository>
-            <id>bioinformatics-all</id>
-            <name>Bioinformatics Nexus (All)</name>
-            <url>http://bioinformatics.ua.pt/maven/content/groups/public</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-
-
-
 
     <!--
     Dependencies
@@ -208,7 +201,7 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-            <!-- Logging -->
+        <!-- Logging -->
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
