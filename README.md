@@ -16,7 +16,7 @@ Bug tracker
 -----------
 Have a bug? Please create an issue here on GitHub!
 
-https://github.com/davidcampos/gimli/issues
+https://github.com/bioinformatics-ua/gimli/issues
 
 Project Structure
 -----------------
